@@ -1,8 +1,18 @@
 #[derive(Debug)]
 pub struct Card {
-    pub name: String,
-    pub description: String,
-    pub value: u32,
+    name: String,
+    description: String,
+    value: u32,
     pub is_face_down: bool,
 }
 
+impl Card {
+    pub fn new(name: String, description: String, value: u32) -> Self {
+        Self {
+            name,
+            description,
+            value,
+            is_face_down: false,
+        }
+    }
+}

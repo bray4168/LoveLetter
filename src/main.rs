@@ -1,21 +1,36 @@
 mod card;
+mod deck;
+mod gamestate;
+mod player;
 
 use std::io;
 use crate::card::Card;
+use crate::player::Player;
+use crate::gamestate::Gamestate;
 
 fn main() {
     println!("Let's make love letter!");
+    let mut num_players: String = String::new();
+    println!("How many players? (2, 3, 4)...");
+    io::stdin().read_line(&mut num_players).unwrap();
 
-    let mut user_input: String = String::new();
+    let mut name: String = String::new();
     println!("Input player name...");
-    io::stdin().read_line(&mut user_input).unwrap();
-    println!("User input: {}", user_input);    
+    io::stdin().read_line(&mut name).unwrap();
 
-    let card: Card = Card {
-        name: String::from("Princess"),
-        description: String::from("If you discard this card, you are out of the round."),
-        value: 8,
-        is_face_down: false,
-    };
+    let mut gamestate = init_gamestate(num_players.trim().parse().unwrap(), String::from(name.trim()));
+    println!("{:?}", gamestate);
+
+    // Test code, will be removed once deck is created
+    let card: Card = Card::new(String::from("Princess"), String::from("If you discard this card, you are out of the round."), 8);
     println!("{:?}", card);
+
+    println!("Starting game with {} players.", gamestate.num_players);
+}
+
+fn init_gamestate(num_players: u32, player_name: String) -> Gamestate {
+    let mut gamestate = Gamestate::new(num_players);
+    gamestate.players.push(Player::new(player_name, true));
+    // Need to roll the deck and stuff, might deal hands as a separate step outside of gamestate setup
+    gamestate
 }
