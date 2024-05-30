@@ -4,7 +4,6 @@ mod gamestate;
 mod player;
 
 use std::io;
-use crate::card::Card;
 use crate::player::Player;
 use crate::gamestate::Gamestate;
 
@@ -20,10 +19,7 @@ fn main() {
 
     let mut gamestate = init_gamestate(num_players.trim().parse().unwrap(), String::from(name.trim()));
     println!("{:?}", gamestate);
-
-    // Test code, will be removed once deck is created
-    let card: Card = Card::new(String::from("Princess"), String::from("If you discard this card, you are out of the round."), 8);
-    println!("{:?}", card);
+    println!("{}", gamestate.deck.cards.len());
 
     println!("Starting game with {} players.", gamestate.num_players);
 }
