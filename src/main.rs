@@ -26,7 +26,16 @@ fn main() {
 fn init_gamestate(num_players: u32, player_name: String) -> Gamestate {
     let mut gamestate = Gamestate::new(num_players);
     gamestate.players.push(Player::new(player_name, true));
-    // Need to roll the deck and stuff, might deal hands as a separate step outside of gamestate setup
     gamestate.deck.shuffle_deck();
+
+    // Need to create ai players before we draw cards
+
+    for player in gamestate.players.iter_mut() {
+        match gamestate.deck.draw_card() {
+            Some(card) => player.add_card(card),
+            None => println!("Deck is empty!")
+        }
+    }
+
     gamestate
 }

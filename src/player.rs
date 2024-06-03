@@ -15,4 +15,8 @@ impl Player {
             is_human,
         }
     }
+
+    pub fn add_card(&mut self, card: Card) {
+        self.hand.push(card);
+    }
 }
