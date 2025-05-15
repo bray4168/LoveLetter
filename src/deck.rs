@@ -21,7 +21,7 @@ impl Deck {
 
     fn init_deck(&mut self) {
         // Now that I know rust enums this needs to be a better enum
-        let mut num_guards = 5;
+        let num_guards = 5;
         let mut num_priest = 2;
         let mut num_baron = 2;
         let mut num_handmaid = 2;

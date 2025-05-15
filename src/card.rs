@@ -1,6 +1,6 @@
 #[derive(Debug)]
 pub struct Card {
-    name: String,
+    pub name: String,
     description: String,
     value: u32,
     pub is_face_down: bool,

@@ -21,6 +21,8 @@ fn main() {
     println!("{:#?}", gamestate);
 
     println!("Starting game with {} players.", gamestate.num_players);
+
+    gamestate.print_gametstate();
 }
 
 fn init_gamestate(num_players: u32, player_name: String) -> Gamestate {
@@ -28,7 +30,9 @@ fn init_gamestate(num_players: u32, player_name: String) -> Gamestate {
     gamestate.players.push(Player::new(player_name, true));
     gamestate.deck.shuffle_deck();
 
-    // Need to create ai players before we draw cards
+    for num in 1..num_players {
+        gamestate.players.push(Player::new("cpu".to_string(), false));
+    }
 
     for player in gamestate.players.iter_mut() {
         match gamestate.deck.draw_card() {
@@ -37,5 +41,5 @@ fn init_gamestate(num_players: u32, player_name: String) -> Gamestate {
         }
     }
 
-    gamestate
+    return gamestate;
 }

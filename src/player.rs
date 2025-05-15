@@ -2,9 +2,9 @@ use crate::card::Card;
 
 #[derive(Debug)]
 pub struct Player {
-    name: String,
-    hand: Vec<Card>,
-    is_human: bool,
+    pub name: String,
+    pub hand: Vec<Card>,
+    pub is_human: bool,
 }
 
 impl Player {

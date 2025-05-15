@@ -19,4 +19,17 @@ impl Gamestate {
             discard: vec![],
         }
     }
+
+    pub fn print_gametstate(self) {
+        for player in self.players {
+            println!("{}", player.name);
+            if player.is_human {
+                for card in player.hand {
+                    println!("Card in hand: {}", card.name);
+                }
+            } else {
+                println!("Num cards: {}", player.hand.len());
+            }
+        }
+    }
 }
